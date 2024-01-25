@@ -29,7 +29,14 @@ public:
 	virtual BankAccount *findAccount(std::string accountNumber) = 0;        
 };
 
+// BINARY SEARCH  
 
+/* class BinarySearchStorage : public IAccountStorage {
+    BankAccount *findAccount(std::string accountNumber) {
+        int start = 0;
+        int slut = v.size();
+    }
+} */
 
 class Bank
 {

@@ -7,11 +7,11 @@ DEBUG?=1
 
 ifeq ($(DEBUG), 1)
 	CFLAGS += -g
-	OUTPUTDIR=bin/debug
+	OUTPUTDIR=.
 	PROG=programmet-debug.exe
 else
 	CFLAGS += -g0 -O3
-	OUTPUTDIR=bin/release
+	OUTPUTDIR=.
 endif
 
 
