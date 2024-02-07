@@ -31,12 +31,49 @@ public:
 
 // BINARY SEARCH  
 
-/* class BinarySearchStorage : public IAccountStorage {
-    BankAccount *findAccount(std::string accountNumber) {
-        int start = 0;
-        int slut = v.size();
+class BinarySearchStorage : public IAccountStorage {
+
+    std::vector<BankAccount> accounts;
+
+public:
+
+    void addAccount(BankAccount newAccount) {
+        accounts.push_back(newAccount);
     }
-} */
+
+
+    BankAccount* findAccount(std::string query) {
+
+        BankAccount* searchResult = nullptr;
+
+        int start = 0;
+        int end = accounts.size() - 1;
+        int mid = 0;
+
+        while (start <= end)
+        {
+            mid = start + (end - start) / 2;
+
+            // Account found
+            if (accounts[mid].getAccountNumber() == query)
+            {
+                return &accounts[mid];
+            }
+            // Account is on right side
+            else if (accounts[mid].getAccountNumber() < query)
+            {
+                start = mid + 1;
+            }
+            // Account is on left side
+            else
+            {
+                start = mid - 1;
+            }
+        }
+
+        return searchResult;
+    }
+};
 
 class Bank
 {
@@ -161,10 +198,14 @@ void addPadding(std::string &accountNumber) {
 
 int main(int, char**){
     //VectorAccountStorage storage;
-    DistributedVectorAccountStorage storage;
+    //DistributedVectorAccountStorage storage;
     //MapAccountStorage storage;
-    Bank bank(&storage);
 
+    // BinarySearchStorage
+    BinarySearchStorage binaryStorage;
+
+    Bank bank(&binaryStorage);
+    
     const int AntalAccounts =  1000000;
 
 
@@ -174,8 +215,11 @@ int main(int, char**){
 
     std::cout << "INITIALIZE: " << std::endl;
     auto startTime = std::chrono::high_resolution_clock::now();
+
     for(int i = 0;i < AntalAccounts; i++){
         std::string accountNumber =  std::to_string(i);
+        addPadding(accountNumber);
+
         if(i == 0){
             sFirst = accountNumber;
         }
@@ -188,15 +232,21 @@ int main(int, char**){
     auto endTime = std::chrono::high_resolution_clock::now();
     std::cout << "INIT Took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
 
+   std::cout << "test 1" << std::endl;
+
     startTime = std::chrono::high_resolution_clock::now();
     BankAccount *p = bank.getAccount(sFirst);
     endTime = std::chrono::high_resolution_clock::now();
     std::cout << p->getAccountNumber() << " took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
 
+    std::cout << "test 2" << std::endl;
+
     startTime = std::chrono::high_resolution_clock::now();
     p = bank.getAccount(sLast);
     endTime = std::chrono::high_resolution_clock::now();
     std::cout << p->getAccountNumber() << " took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
+
+    std::cout << "test 3" << std::endl;
 
     startTime = std::chrono::high_resolution_clock::now();
     p = bank.getAccount(sNotFound);
