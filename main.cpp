@@ -68,7 +68,9 @@ public:
     }
 
 };
+
 class DistributedVectorAccountStorage : public IAccountStorage{
+    
     std::vector<BankAccount> accountsStartingWith0;
     std::vector<BankAccount> accountsStartingWith1;
     std::vector<BankAccount> accountsStartingWith2;
@@ -147,7 +149,15 @@ public:
 
 };
 
+void addPadding(std::string &accountNumber) {
 
+    int paddingAmount = 10 - accountNumber.size();
+
+    for (int i = 0; i < paddingAmount; i++)
+    {
+        accountNumber.insert(0, "0");
+    }
+}
 
 int main(int, char**){
     //VectorAccountStorage storage;
