@@ -56,7 +56,11 @@ public:
         std::shuffle(accounts.begin(), accounts.end(), g);
     }
 
-    
+    void sortAccounts() {
+        std::sort(accounts.begin(), accounts.end(), [] (BankAccount &a, BankAccount &b ) {
+            return a.getAccountNumber() < b.getAccountNumber();
+        });
+    }
 
     BankAccount* findAccount(std::string query) {
 
@@ -222,7 +226,7 @@ int main(int, char**){
 
     Bank bank(&binaryStorage);
     
-    const int AntalAccounts =  10;
+    const int AntalAccounts =  1000000;
 
 
     std::string sFirst = ""; 
@@ -245,12 +249,28 @@ int main(int, char**){
         bank.addAccount(accountNumber);
         
     }
+    auto endTime = std::chrono::high_resolution_clock::now();
+        
+    std::cout << "INIT Took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
+
+/*     std::cout << "-------------" << std::endl;
+    binaryStorage.printAccounts();
+    std::cout << "-------------" << std::endl; */
 
     binaryStorage.shuffleAccounts();
-    //binaryStorage.sortAccounts();
 
-    auto endTime = std::chrono::high_resolution_clock::now();
-    std::cout << "INIT Took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
+/*     std::cout << "-------------" << std::endl;
+    binaryStorage.printAccounts();
+    std::cout << "-------------" << std::endl; */
+
+    startTime = std::chrono::high_resolution_clock::now();
+    binaryStorage.sortAccounts();
+    endTime = std::chrono::high_resolution_clock::now();
+    std::cout << "SORT Took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
+
+/*     std::cout << "-------------" << std::endl;
+    binaryStorage.printAccounts();
+    std::cout << "-------------" << std::endl; */
 
     startTime = std::chrono::high_resolution_clock::now();
     BankAccount *p = bank.getAccount(sFirst);
