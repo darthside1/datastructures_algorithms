@@ -3,6 +3,7 @@
 #include <map>
 #include <random>
 #include <chrono>
+#include <string>
 
 class BankAccount{
     std::string accountNumber;
@@ -48,11 +49,11 @@ public:
 
         int start = 0;
         int end = accounts.size() - 1;
-        int mid = 0;
+        // int mid = 0;
 
         while (start <= end)
         {
-            mid = start + (end - start) / 2;
+            int mid = start + (end - start) / 2;
 
             // Account found
             if (accounts[mid].getAccountNumber() == query)
@@ -60,14 +61,14 @@ public:
                 return &accounts[mid];
             }
             // Account is on right side
-            else if (accounts[mid].getAccountNumber() < query)
+            if (accounts[mid].getAccountNumber() < query)
             {
                 start = mid + 1;
             }
             // Account is on left side
             else
             {
-                start = mid - 1;
+                end = mid - 1;
             }
         }
 
@@ -227,26 +228,21 @@ int main(int, char**){
             sLast = accountNumber;
         }
         bank.addAccount(accountNumber);
+        
     }
 
     auto endTime = std::chrono::high_resolution_clock::now();
     std::cout << "INIT Took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
-
-   std::cout << "test 1" << std::endl;
 
     startTime = std::chrono::high_resolution_clock::now();
     BankAccount *p = bank.getAccount(sFirst);
     endTime = std::chrono::high_resolution_clock::now();
     std::cout << p->getAccountNumber() << " took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
 
-    std::cout << "test 2" << std::endl;
-
     startTime = std::chrono::high_resolution_clock::now();
     p = bank.getAccount(sLast);
     endTime = std::chrono::high_resolution_clock::now();
     std::cout << p->getAccountNumber() << " took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
-
-    std::cout << "test 3" << std::endl;
 
     startTime = std::chrono::high_resolution_clock::now();
     p = bank.getAccount(sNotFound);
