@@ -251,7 +251,7 @@ int main(int, char**){
     }
     auto endTime = std::chrono::high_resolution_clock::now();
         
-    std::cout << "INIT Took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
+    std::cout << "INIT Took: " << std::chrono::duration_cast<std::chrono::nanoseconds>(endTime    - startTime).count() << " nanoseconds" << std::endl;
 
 /*     std::cout << "-------------" << std::endl;
     binaryStorage.printAccounts();
@@ -266,7 +266,7 @@ int main(int, char**){
     startTime = std::chrono::high_resolution_clock::now();
     binaryStorage.sortAccounts();
     endTime = std::chrono::high_resolution_clock::now();
-    std::cout << "SORT Took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
+    std::cout << "SORT Took: " << std::chrono::duration_cast<std::chrono::nanoseconds>(endTime    - startTime).count() << " nanoseconds" << std::endl;
 
 /*     std::cout << "-------------" << std::endl;
     binaryStorage.printAccounts();
@@ -275,15 +275,15 @@ int main(int, char**){
     startTime = std::chrono::high_resolution_clock::now();
     BankAccount *p = bank.getAccount(sFirst);
     endTime = std::chrono::high_resolution_clock::now();
-    std::cout << p->getAccountNumber() << " took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
+    std::cout << p->getAccountNumber() << " took: " << std::chrono::duration_cast<std::chrono::nanoseconds>(endTime    - startTime).count() << " nanoseconds" << std::endl;
 
     startTime = std::chrono::high_resolution_clock::now();
     p = bank.getAccount(sLast);
     endTime = std::chrono::high_resolution_clock::now();
-    std::cout << p->getAccountNumber() << " took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
+    std::cout << p->getAccountNumber() << " took: " << std::chrono::duration_cast<std::chrono::nanoseconds>(endTime    - startTime).count() << " nanoseconds" << std::endl;
 
     startTime = std::chrono::high_resolution_clock::now();
     p = bank.getAccount(sNotFound);
     endTime = std::chrono::high_resolution_clock::now();
-    std::cout << "NOT FOUND" << " took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
+    std::cout << "NOT FOUND" << " took: " << std::chrono::duration_cast<std::chrono::nanoseconds>(endTime    - startTime).count() << " nanoseconds" << std::endl;
 }
