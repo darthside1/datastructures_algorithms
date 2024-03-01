@@ -4,6 +4,8 @@
 #include <random>
 #include <chrono>
 #include <string>
+#include <algorithm>
+#include <random>
 
 class BankAccount{
     std::string accountNumber;
@@ -38,10 +40,23 @@ class BinarySearchStorage : public IAccountStorage {
 
 public:
 
+    void printAccounts() {
+        for (BankAccount x : accounts) { std::cout << x.getAccountNumber() << std::endl; }
+    }
+
     void addAccount(BankAccount newAccount) {
         accounts.push_back(newAccount);
     }
 
+    void shuffleAccounts() {
+
+        std::random_device r;
+        std::mt19937 g(r());
+
+        std::shuffle(accounts.begin(), accounts.end(), g);
+    }
+
+    
 
     BankAccount* findAccount(std::string query) {
 
@@ -207,7 +222,7 @@ int main(int, char**){
 
     Bank bank(&binaryStorage);
     
-    const int AntalAccounts =  1000000;
+    const int AntalAccounts =  10;
 
 
     std::string sFirst = ""; 
@@ -230,6 +245,9 @@ int main(int, char**){
         bank.addAccount(accountNumber);
         
     }
+
+    binaryStorage.shuffleAccounts();
+    //binaryStorage.sortAccounts();
 
     auto endTime = std::chrono::high_resolution_clock::now();
     std::cout << "INIT Took: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime    - startTime).count() << " milliseconds" << std::endl;
