@@ -32,8 +32,7 @@ public:
 	virtual BankAccount *findAccount(std::string accountNumber) = 0;        
 };
 
-// BINARY SEARCH  
-
+// BINARY SEARCH
 class BinarySearchStorage : public IAccountStorage {
 
     std::vector<BankAccount> accounts;
@@ -62,13 +61,13 @@ public:
         });
     }
 
+    // Find account using binary search algorithm
     BankAccount* findAccount(std::string query) {
 
         BankAccount* searchResult = nullptr;
 
         int start = 0;
         int end = accounts.size() - 1;
-        // int mid = 0;
 
         while (start <= end)
         {
@@ -233,6 +232,7 @@ int main(int, char**){
     std::string sLast = ""; 
     std::string sNotFound = "notfound"; 
 
+    // INITIALIZE
     std::cout << "INITIALIZE: " << std::endl;
     auto startTime = std::chrono::high_resolution_clock::now();
 
@@ -250,38 +250,30 @@ int main(int, char**){
         
     }
     auto endTime = std::chrono::high_resolution_clock::now();
-        
     std::cout << "INIT Took: " << std::chrono::duration_cast<std::chrono::nanoseconds>(endTime    - startTime).count() << " nanoseconds" << std::endl;
 
-/*     std::cout << "-------------" << std::endl;
-    binaryStorage.printAccounts();
-    std::cout << "-------------" << std::endl; */
-
+    // SHUFFLE ACCOUNTS
     binaryStorage.shuffleAccounts();
 
-/*     std::cout << "-------------" << std::endl;
-    binaryStorage.printAccounts();
-    std::cout << "-------------" << std::endl; */
-
+    // SORT ACCOUNTS
     startTime = std::chrono::high_resolution_clock::now();
     binaryStorage.sortAccounts();
     endTime = std::chrono::high_resolution_clock::now();
     std::cout << "SORT Took: " << std::chrono::duration_cast<std::chrono::nanoseconds>(endTime    - startTime).count() << " nanoseconds" << std::endl;
 
-/*     std::cout << "-------------" << std::endl;
-    binaryStorage.printAccounts();
-    std::cout << "-------------" << std::endl; */
-
+    // FIRST ACCOUNT
     startTime = std::chrono::high_resolution_clock::now();
     BankAccount *p = bank.getAccount(sFirst);
     endTime = std::chrono::high_resolution_clock::now();
     std::cout << p->getAccountNumber() << " took: " << std::chrono::duration_cast<std::chrono::nanoseconds>(endTime    - startTime).count() << " nanoseconds" << std::endl;
 
+    // LAST ACCOUNT
     startTime = std::chrono::high_resolution_clock::now();
     p = bank.getAccount(sLast);
     endTime = std::chrono::high_resolution_clock::now();
     std::cout << p->getAccountNumber() << " took: " << std::chrono::duration_cast<std::chrono::nanoseconds>(endTime    - startTime).count() << " nanoseconds" << std::endl;
 
+    // NOT FOUND
     startTime = std::chrono::high_resolution_clock::now();
     p = bank.getAccount(sNotFound);
     endTime = std::chrono::high_resolution_clock::now();
