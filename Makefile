@@ -1,5 +1,5 @@
 PROG=programmet.exe
-SOURCES=main.cpp
+SOURCES=vardcentral.cpp
 DEPS=
 CC=g++
 CFLAGS=-Wall  -std=c++20
