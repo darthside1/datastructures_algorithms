@@ -1,5 +1,5 @@
 PROG=programmet.exe
-SOURCES=queue.cpp
+SOURCES=hockey.cpp
 DEPS=
 CC=g++
 CFLAGS=-Wall  -std=c++20
