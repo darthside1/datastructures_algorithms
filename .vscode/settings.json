@@ -4,6 +4,11 @@
             "cwd": "/Users/patrykrobakowski/Documents/5 - Datastrukturer & Algoritmer/Projects/bank_algorithm",
             "binaryPath": "/Users/patrykrobakowski/Documents/5 - Datastrukturer & Algoritmer/Projects/bank_algorithm/programmet-debug.exe",
             "binaryArgs": []
+        },
+        {
+            "cwd": "/Users/patrykrobakowski/Documents/5 - Datastrukturer & Algoritmer/Projects/inlämningsuppgifter_datastrukturer_och_algoritmer",
+            "binaryPath": "/Users/patrykrobakowski/Documents/5 - Datastrukturer & Algoritmer/Projects/inlämningsuppgifter_datastrukturer_och_algoritmer/programmet-debug.exe",
+            "binaryArgs": []
         }
     ],
     "files.associations": {

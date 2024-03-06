@@ -64,7 +64,7 @@ public:
 int main() {
     // Test the getPlayer function
     LRUCache cache;
-    int playerIdToSearch = 2; // For example, searching for player with ID 25
+    int playerIdToSearch = 25; // For example, searching for player with ID 25
     HockeyPlayer* player = cache.getPlayer(playerIdToSearch);
     
     if (player != nullptr) {
